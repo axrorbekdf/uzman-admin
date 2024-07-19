@@ -12,7 +12,6 @@ onMounted(() => {
     .then((res: any) => {
         
         if(res.status){
-            
             authStore.update({
                 id: res.resoult.$id,
                 username: res.resoult.username,
@@ -21,12 +20,15 @@ onMounted(() => {
                 token: res.resoult.token,
             });
 
+            loadingStore.set(false);
             router.push('/');
         }
-        loadingStore.set(false);    
+        
+    }).catch(() => {
+        loadingStore.set(false);
     }).finally(() => {
         loadingStore.set(false);
-    });
+    });;
 });
 </script>
 

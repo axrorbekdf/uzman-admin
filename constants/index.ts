@@ -10,7 +10,7 @@ export const localApiPoint = 'http://10.100.104.125:5500/api/';
 export const sidebarItems = [
     {
         name: "Dashboard",
-        path: "/documents",
+        path: "/",
         icon: "radix-icons:dashboard"
     },
     {

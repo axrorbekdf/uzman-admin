@@ -30,8 +30,8 @@ const logout = async () => {
 
     AuthService.logout()
     .then(() => {
-        router.push('auth/login')    
         loadingStore.set(false);
+        router.push('auth/login')    
 
         toast.add({
             title: 'Tizimdan chiqildi!',
@@ -40,13 +40,13 @@ const logout = async () => {
         clear();
 
     }).catch(error => {
-        console.log(error);
+        loadingStore.set(false);
         errors.value = error;
         toast.add({
             title: 'Error',
             description: error.message
         })
-        loadingStore.set(false);
+        
     })
     .finally(() => {
         loadingStore.set(false)

@@ -1,5 +1,5 @@
 <template>
     <div>
-        Level
+        level page
     </div>
 </template>

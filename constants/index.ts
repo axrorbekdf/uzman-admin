@@ -14,24 +14,24 @@ export const sidebarItems = [
         icon: "radix-icons:dashboard"
     },
     {
-        name: "To do",
-        path: "/documents/to-do",
+        name: "Category",
+        path: "/category",
         icon: "ri:todo-fill"
     },
     {
-        name: "In progress",
-        path: "/documents/in-progress",
+        name: "Level",
+        path: "/level",
         icon: "game-icons:progression"
     },
-    {
-        name: "Produced",
-        path: "/documents/produced",
-        icon: "eos-icons:product-subscriptions"
+    // {
+    //     name: "Produced",
+    //     path: "/documents/produced",
+    //     icon: "eos-icons:product-subscriptions"
         
-    },
-    {
-        name: "Done",
-        path: "/documents/done",
-        icon: "ic:baseline-cloud-done"
-    },
+    // },
+    // {
+    //     name: "Done",
+    //     path: "/documents/done",
+    //     icon: "ic:baseline-cloud-done"
+    // },
 ];

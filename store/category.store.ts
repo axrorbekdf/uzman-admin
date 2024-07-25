@@ -35,6 +35,7 @@ export const useCategoryStore = defineStore("category", {
         
             this.$patch({category})
         },
+        
         setData(categories: Array<Category>){
 
             this.$patch({categories})

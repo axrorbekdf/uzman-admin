@@ -1,44 +1,22 @@
 <script setup lang="ts">
-import CategoryService from '~/services/Category';
-import { useCategoryStore } from '~/store/category.store';
 
-const loadingStore = useLoadingStore()
-const categoryStore = useCategoryStore();
-
+const loadingStore = useLoadingStore();
+const modelStore = useCategoryStore();
 
 
 onMounted(async () => {
-  try {
-    loadingStore.set(true);
-
-    CategoryService.forOptions()
-    .then((res: any) => {
-        // console.log(res);
-        
-        categoryStore.setData(res.resoult.data)
-        
-        loadingStore.set(false);
-    }).catch(() => {
-        loadingStore.set(false);
-    }).finally(() => {
-        loadingStore.set(false);
-        
-    });
-
-  } catch (error) {
-    console.error('Failed to load posts:', error);
-    loadingStore.set(false);
-  } finally {
-    loadingStore.set(false);
-  }
-
+  modelStore.getAllList();
 });
 
 </script>
 
 <template>
-  <div>
-      <CategoryIndex/>
-  </div>
+    <UiLoader v-if="loadingStore.isLoading" />
+
+  <template v-else>
+      <div>
+        <ModelList :data="modelStore.getList" :model="modelStore.model"/>
+      </div>
+  </template>
 </template>
 

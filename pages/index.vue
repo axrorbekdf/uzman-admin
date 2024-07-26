@@ -1,9 +1,11 @@
 <script setup lang="ts">
 
+
 </script>
 
 <template>
     <div>
-        Main page
+      <h1>Home</h1>
     </div>
 </template>
+

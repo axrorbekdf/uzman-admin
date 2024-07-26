@@ -1,12 +1,17 @@
 import { defineStore } from "pinia";
-import CategoryService from "~/services/Category";
+import LevelService from "~/services/Level";
 
-
-export const useCategoryStore = defineStore("category", {
+export const useLevelStore = defineStore("level", {
     state: () => ({
-        category: null,
+        level: null,
         categories: [],
         model: {
+            input: [
+                {
+                  key: 'name',
+                  label: 'Name',
+                }
+            ],
             columns: [
                 {
                   key: 'id',
@@ -15,10 +20,6 @@ export const useCategoryStore = defineStore("category", {
                 }, {
                   key: 'name',
                   label: 'Name',
-                  sortable: true
-                }, {
-                  key: 'icon',
-                  label: 'Icon',
                   sortable: true
                 }, {
                   key: 'date',
@@ -48,27 +49,27 @@ export const useCategoryStore = defineStore("category", {
 
     }),
     getters: {
-        category: state => state.category,
+        level: state => state.level,
         getList: state => state.categories
     },
     actions: {
         async getAllList(){
             try {
             
-                CategoryService.forOptions()
+                LevelService.forOptions()
                 .then((res: any) => {
                     
                     this.categories = (res.resoult.data)
-            
+                  
                 }).catch((error) => {
-                    
                   console.error('Failed to load posts:', error);
                 });
             
               } catch (error) {
-                  console.error('Failed to load posts:', error);
-        
-              }
+                
+                console.error('Failed to load posts:', error);
+             
+              } 
         }
     },
 });

@@ -1,33 +1,45 @@
 import { defineStore } from "pinia";
-import RegionService from "~/services/Region";
-// region
-// regions
-// Region
+import CommentService from "~/services/Comment";
 
-export const useRegionStore = defineStore("region", {
+
+export const useCommentStore = defineStore("comment", {
     state: () => ({
-        region: null,
-        regions: [],
+        comment: null,
+        comments: [],
         model: {
             modelForForm: {
               entity: {
                 id: undefined,
-                name: undefined
+                text: undefined,
+                user_from_id: undefined,
+                user_to_id: undefined
               },
               formTemplate: [
                 {
-                  label: "Nomi",
-                  name: 'name'
+                    label: "Text",
+                    name: 'text'
+                },
+                {
+                    label: "Userdan",
+                    name: 'user_from_id'
+                },
+                {
+                    label: "Userga",
+                    name: 'user_to_id'
                 }
               ],
               rules: {
-                name: {
+                text: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 },
-                icon: {
+                user_from_id: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
+                },
+                user_to_id: {
+                    rule: "required",
+                    message: "To'ldirilishi kerak"
                 }
               }
             },
@@ -37,10 +49,18 @@ export const useRegionStore = defineStore("region", {
                   label: 'ID',
                   sortable: true
                 }, {
-                  key: 'name',
-                  label: 'Name',
+                  key: 'text',
+                  label: 'Text',
                   sortable: true
-                },{
+                }, {
+                  key: 'user_from_id',
+                  label: 'Userdan',
+                  sortable: true
+                }, {
+                    key: 'user_to_id',
+                    label: 'Userga',
+                    sortable: true
+                }, {
                   key: 'date',
                   label: 'Sana',
                   sortable: true
@@ -68,17 +88,17 @@ export const useRegionStore = defineStore("region", {
 
     }),
     getters: {
-        region: state => state.region,
-        getList: state => state.regions
+        comment: state => state.comment,
+        getList: state => state.comments
     },
     actions: {
         async getAllList(){
             try {
             
-                RegionService.forOptions()
+                CommentService.forOptions()
                 .then((res: any) => {
                     
-                    this.regions = (res.resoult.data)
+                    this.comments = (res.resoult.data)
             
                 }).catch((error) => {
                     
@@ -91,10 +111,10 @@ export const useRegionStore = defineStore("region", {
               }
         },
 
-        async createRegion(region: any){
+        async createComment(comment: any){
           try {
           
-              RegionService.store(region)
+              CommentService.store(comment)
               .then((res: any) => {
 
                 this.getAllList();
@@ -110,10 +130,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async updateRegion(id:number, region: any){
+        async updateComment(id:number, comment: any){
           try {
           
-              RegionService.update(id, region)
+              CommentService.update(id, comment)
               .then((res: any) => {
 
                 this.getAllList();
@@ -129,10 +149,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async deleteRegion(id:number){
+        async deleteComment(id:number){
           try {
           
-              RegionService.delete(id)
+              CommentService.delete(id)
               .then((res: any) => {
 
                 this.getAllList();

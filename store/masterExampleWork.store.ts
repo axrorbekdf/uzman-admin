@@ -1,31 +1,36 @@
 import { defineStore } from "pinia";
-import RegionService from "~/services/Region";
-// region
-// regions
-// Region
+import MasterExampleWorkService from "~/services/MasterExampleWork";
+// MasterExampleWork
+// masterExampleWork
+// masterExampleWorks
 
-export const useRegionStore = defineStore("region", {
+export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
     state: () => ({
-        region: null,
-        regions: [],
+        masterExampleWork: null,
+        masterExampleWorks: [],
         model: {
             modelForForm: {
               entity: {
                 id: undefined,
-                name: undefined
+                images: undefined,
+                master_id: undefined
               },
               formTemplate: [
                 {
-                  label: "Nomi",
-                  name: 'name'
+                  label: "Rasmlar",
+                  name: 'images'
+                },
+                {
+                  label: "Master",
+                  name: 'master_id'
                 }
               ],
               rules: {
-                name: {
+                images: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 },
-                icon: {
+                master_id: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 }
@@ -37,10 +42,14 @@ export const useRegionStore = defineStore("region", {
                   label: 'ID',
                   sortable: true
                 }, {
-                  key: 'name',
-                  label: 'Name',
+                  key: 'images',
+                  label: 'Rasmlar',
                   sortable: true
-                },{
+                }, {
+                  key: 'master_id',
+                  label: 'Master',
+                  sortable: true
+                }, {
                   key: 'date',
                   label: 'Sana',
                   sortable: true
@@ -68,17 +77,17 @@ export const useRegionStore = defineStore("region", {
 
     }),
     getters: {
-        region: state => state.region,
-        getList: state => state.regions
+        masterExampleWork: state => state.masterExampleWork,
+        getList: state => state.masterExampleWorks
     },
     actions: {
         async getAllList(){
             try {
             
-                RegionService.forOptions()
+                MasterExampleWorkService.forOptions()
                 .then((res: any) => {
                     
-                    this.regions = (res.resoult.data)
+                    this.masterExampleWorks = (res.resoult.data)
             
                 }).catch((error) => {
                     
@@ -91,10 +100,10 @@ export const useRegionStore = defineStore("region", {
               }
         },
 
-        async createRegion(region: any){
+        async createMasterExampleWork(masterExampleWork: any){
           try {
           
-              RegionService.store(region)
+              MasterExampleWorkService.store(masterExampleWork)
               .then((res: any) => {
 
                 this.getAllList();
@@ -110,10 +119,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async updateRegion(id:number, region: any){
+        async updateMasterExampleWork(id:number, masterExampleWork: any){
           try {
           
-              RegionService.update(id, region)
+              MasterExampleWorkService.update(id, masterExampleWork)
               .then((res: any) => {
 
                 this.getAllList();
@@ -129,10 +138,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async deleteRegion(id:number){
+        async deleteMasterExampleWork(id:number){
           try {
           
-              RegionService.delete(id)
+              MasterExampleWorkService.delete(id)
               .then((res: any) => {
 
                 this.getAllList();

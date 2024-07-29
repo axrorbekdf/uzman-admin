@@ -1,23 +1,26 @@
 import { defineStore } from "pinia";
-import RegionService from "~/services/Region";
-// region
-// regions
-// Region
+import LanguageService from "~/services/Language";
 
-export const useRegionStore = defineStore("region", {
+
+export const useLanguageStore = defineStore("language", {
     state: () => ({
-        region: null,
-        regions: [],
+        language: null,
+        languages: [],
         model: {
             modelForForm: {
               entity: {
                 id: undefined,
-                name: undefined
+                name: undefined,
+                slug: undefined
               },
               formTemplate: [
                 {
                   label: "Nomi",
                   name: 'name'
+                },
+                {
+                  label: "Slug",
+                  name: 'slug'
                 }
               ],
               rules: {
@@ -25,7 +28,7 @@ export const useRegionStore = defineStore("region", {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 },
-                icon: {
+                slug: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 }
@@ -40,7 +43,11 @@ export const useRegionStore = defineStore("region", {
                   key: 'name',
                   label: 'Name',
                   sortable: true
-                },{
+                }, {
+                  key: 'slug',
+                  label: 'Slug',
+                  sortable: true
+                }, {
                   key: 'date',
                   label: 'Sana',
                   sortable: true
@@ -68,17 +75,17 @@ export const useRegionStore = defineStore("region", {
 
     }),
     getters: {
-        region: state => state.region,
-        getList: state => state.regions
+        language: state => state.language,
+        getList: state => state.languages
     },
     actions: {
         async getAllList(){
             try {
             
-                RegionService.forOptions()
+                LanguageService.forOptions()
                 .then((res: any) => {
                     
-                    this.regions = (res.resoult.data)
+                    this.languages = (res.resoult.data)
             
                 }).catch((error) => {
                     
@@ -91,10 +98,10 @@ export const useRegionStore = defineStore("region", {
               }
         },
 
-        async createRegion(region: any){
+        async createLanguage(language: any){
           try {
           
-              RegionService.store(region)
+              LanguageService.store(language)
               .then((res: any) => {
 
                 this.getAllList();
@@ -110,10 +117,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async updateRegion(id:number, region: any){
+        async updateLanguage(id:number, language: any){
           try {
           
-              RegionService.update(id, region)
+              LanguageService.update(id, language)
               .then((res: any) => {
 
                 this.getAllList();
@@ -129,10 +136,10 @@ export const useRegionStore = defineStore("region", {
             }
         },
 
-        async deleteRegion(id:number){
+        async deleteLanguage(id:number){
           try {
           
-              RegionService.delete(id)
+              LanguageService.delete(id)
               .then((res: any) => {
 
                 this.getAllList();

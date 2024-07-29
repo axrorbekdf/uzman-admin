@@ -50,33 +50,23 @@ export const sidebarItems = [
         icon: "ic:baseline-cloud-done"
     },
     {
-        name: "Feedback",
-        path: "/feedback",
+        name: "Language",
+        path: "/language",
         icon: "ic:baseline-cloud-done"
     },
     {
-        name: "Feedback",
-        path: "/feedback",
+        name: "Master",
+        path: "/master",
         icon: "ic:baseline-cloud-done"
     },
     {
-        name: "Feedback",
-        path: "/feedback",
+        name: "Master example work",
+        path: "/master-example-work",
         icon: "ic:baseline-cloud-done"
     },
     {
-        name: "Feedback",
-        path: "/feedback",
-        icon: "ic:baseline-cloud-done"
-    },
-    {
-        name: "Feedback",
-        path: "/feedback",
-        icon: "ic:baseline-cloud-done"
-    },
-    {
-        name: "Feedback",
-        path: "/feedback",
+        name: "Comment",
+        path: "/comment",
         icon: "ic:baseline-cloud-done"
     }
 ];

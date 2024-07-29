@@ -1,0 +1,1 @@
+import{u as t}from"./ADEZgYjw.js";const r={login(e){return t()("auth/login",{method:"POST",body:e})},getUser(){return t()("auth/me",{method:"GET"})},logout(){return t()("auth/logout",{method:"POST"})}};export{r as A};

@@ -23,15 +23,60 @@ export const sidebarItems = [
         path: "/level",
         icon: "game-icons:progression"
     },
-    // {
-    //     name: "Produced",
-    //     path: "/documents/produced",
-    //     icon: "eos-icons:product-subscriptions"
+    {
+        name: "Home card",
+        path: "/home-card",
+        icon: "eos-icons:product-subscriptions"
         
-    // },
-    // {
-    //     name: "Done",
-    //     path: "/documents/done",
-    //     icon: "ic:baseline-cloud-done"
-    // },
+    },
+    {
+        name: "Specialist",
+        path: "/specialist",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Step work",
+        path: "/step-work",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Region",
+        path: "/region",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    }
 ];

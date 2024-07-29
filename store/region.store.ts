@@ -1,0 +1,160 @@
+import { defineStore } from "pinia";
+import RegionService from "~/services/Region";
+// region
+// regions
+// Region
+
+export const useRegionStore = defineStore("region", {
+    state: () => ({
+        region: null,
+        regions: [],
+        model: {
+            modelForForm: {
+              entity: {
+                id: undefined,
+                name: undefined,
+                icon: undefined
+              },
+              formTemplate: [
+                {
+                  label: "Category nomi",
+                  name: 'name'
+                },
+                {
+                  label: "Category icon",
+                  name: 'icon'
+                }
+              ],
+              rules: {
+                name: {
+                  rule: "required",
+                  message: "To'ldirilishi kerak"
+                },
+                icon: {
+                  rule: "required",
+                  message: "To'ldirilishi kerak"
+                }
+              }
+            },
+            columns: [
+                {
+                  key: 'id',
+                  label: 'ID',
+                  sortable: true
+                }, {
+                  key: 'name',
+                  label: 'Name',
+                  sortable: true
+                }, {
+                  key: 'icon',
+                  label: 'Icon',
+                  sortable: true
+                }, {
+                  key: 'date',
+                  label: 'Sana',
+                  sortable: true
+                },{
+                  key: 'actions'
+                }
+            ],
+        
+            // items: (row: any) => [
+            //     [
+            //       {
+            //         label: 'Edit',
+            //         icon: 'i-heroicons-pencil-square-20-solid',
+            //         click: () => {console.log('Edit', row.id)}
+            //       }, {
+            //         label: 'View',
+            //         icon: 'i-heroicons-arrow-right-circle-20-solid'
+            //       }, {
+            //         label: 'Delete',
+            //         icon: 'i-heroicons-trash-20-solid'
+            //       }
+            //     ]
+            //   ]
+        }
+
+    }),
+    getters: {
+        region: state => state.region,
+        getList: state => state.regions
+    },
+    actions: {
+        async getAllList(){
+            try {
+            
+                CategoryService.forOptions()
+                .then((res: any) => {
+                    
+                    this.categories = (res.resoult.data)
+            
+                }).catch((error) => {
+                    
+                  console.error('Failed to load posts:', error);
+                });
+            
+              } catch (error) {
+                  console.error('Failed to load posts:', error);
+        
+              }
+        },
+
+        async createCategory(category: any){
+          try {
+          
+              CategoryService.store(category)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async updateCategory(id:number, category: any){
+          try {
+          
+              CategoryService.update(id, category)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async deleteCategory(id:number){
+          try {
+          
+              CategoryService.delete(id)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        }
+    },
+});

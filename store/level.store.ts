@@ -6,12 +6,24 @@ export const useLevelStore = defineStore("level", {
         level: null,
         categories: [],
         model: {
-            input: [
+            modelForForm: {
+              entity: {
+                id: undefined,
+                name: undefined
+              },
+              formTemplate: [
                 {
-                  key: 'name',
-                  label: 'Name',
+                  label: "Level nomi",
+                  name: 'name'
                 }
-            ],
+              ],
+              rules: {
+                name: {
+                  rule: "required",
+                  message: "To'ldirilishi kerak"
+                }
+              }
+            },
             columns: [
                 {
                   key: 'id',
@@ -30,21 +42,21 @@ export const useLevelStore = defineStore("level", {
                 }
             ],
         
-            items: (row: any) => [
-                [
-                  {
-                    label: 'Edit',
-                    icon: 'i-heroicons-pencil-square-20-solid',
-                    click: () => console.log('Edit', row.id)
-                  }, {
-                    label: 'View',
-                    icon: 'i-heroicons-arrow-right-circle-20-solid'
-                  }, {
-                    label: 'Delete',
-                    icon: 'i-heroicons-trash-20-solid'
-                  }
-                ]
-              ]
+            // items: (row: any) => [
+            //   [
+            //     {
+            //       label: 'Edit',
+            //       icon: 'i-heroicons-pencil-square-20-solid',
+            //       click: () => console.log('Edit', row.id)
+            //     }, {
+            //       label: 'View',
+            //       icon: 'i-heroicons-arrow-right-circle-20-solid'
+            //     }, {
+            //       label: 'Delete',
+            //       icon: 'i-heroicons-trash-20-solid'
+            //     }
+            //     ]
+            // ]
         }
 
     }),
@@ -70,6 +82,63 @@ export const useLevelStore = defineStore("level", {
                 console.error('Failed to load posts:', error);
              
               } 
+        },
+        async createLevel(level: any){
+          try {
+          
+              LevelService.store(level)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async updateLevel(id:number, level: any){
+          try {
+          
+              LevelService.update(id, level)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async deleteLevel(id:number){
+          try {
+          
+              LevelService.delete(id)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
         }
     },
+    
 });

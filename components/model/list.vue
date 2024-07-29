@@ -10,6 +10,22 @@ const props = defineProps({
     type: Object,
     default: {},
     required: true
+  },
+  clearEntity:{
+    type: Function,
+    required: true
+  },
+  createModel:{
+    type: Function,
+    required: true
+  },
+  updateModel:{
+    type: Function,
+    required: true
+  },
+  deleteModel:{
+    type: Function,
+    required: true
   }
 })
 
@@ -21,6 +37,20 @@ const q = ref('')
 const selected = ref([
     // data[0]
 ])
+
+function select (row: any) {
+    
+    selected.value = [];
+    
+    const index = selected.value.findIndex((item: any) => item.id === row.id)
+    if (index === -1) {
+        selected.value.push(row)
+    } else {
+        selected.value.splice(index, 1)
+    }
+
+    console.log(selected);
+}
 
 const page = ref(1)
 const pageCount = 10
@@ -45,89 +75,68 @@ const paginateRows = computed(() => {
   return filteredRows.value.slice((page.value - 1) * pageCount, (page.value) * pageCount)
 })
 
-const isOpen = ref(false)
+const isOpenView = ref(false);
+const isOpenCreate = ref(false);
+const isOpenUpdate = ref(false);
 
-const state = reactive({
-  email: undefined,
-  password: undefined
-})
+function modalShowView(){
+    props.model.modelForForm.entity = selected.value[0];
+    
+    isOpenView.value = !isOpenView.value
+}
+function modalShowCreate(){
+    isOpenCreate.value = !isOpenCreate.value;
+    props.clearEntity();
+}
+function modalShowUpdate(){
+
+    props.model.modelForForm.entity = selected.value[0];
+
+    isOpenUpdate.value = !isOpenUpdate.value;
+}
+
+function modalShowDelete(){
+    props.model.modelForForm.entity = selected.value[0];
+    props.deleteModel();
+}
 </script>
 
 <template>
     <div>
+        <ModelView :model="props.model" :toggle-show="modalShowView" :is-open="isOpenView"/>
+        <ModelCreate :model="props.model" :toggle-show="modalShowCreate" :is-open="isOpenCreate" :create-model="createModel"/>
+        <ModelUpdate :model="props.model" :toggle-show="modalShowUpdate" :is-open="isOpenUpdate" :update-model="updateModel"/>
         <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
-            <UButton label="Open" @click="isOpen = true" />
-    
-            <UModal v-model="isOpen" fullscreen>
-                <UCard
-                    :ui="{
-                    base: 'h-full flex flex-col',
-                    rounded: '',
-                    divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-                    body: {
-                        base: 'grow'
-                    }
-                    }"
-                >
-                    <template #header>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                            Modal
-                            </h3>
-                            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="isOpen = false" />
-                        </div>
-                    </template>
-        
-                    <Placeholder class="h-full" />
-                    <div>
-                        <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-                            <UFormGroup label="Email" name="email">
-                                <UInput v-model="state.email" />
-                            </UFormGroup>
 
-                            <UFormGroup label="Password" name="password">
-                                <UInput v-model="state.password" type="password" />
-                            </UFormGroup>
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-start-1 col-end-3">
+                    <UInput v-model="q" placeholder="Filter data..." />
+                </div>
+                <div class="col-end-12 col-span-2 flex">
+                    <UButton label="Create" color="primary" variant="soft" class="mx-5" @click="modalShowCreate()"/>
+                    <UButtonGroup size="sm" orientation="horizontal">
+                        <UButton label="View" color="white" variant="solid" @click="modalShowView()"/>
+                        <UButton label="Update" color="cyan" variant="soft" @click="modalShowUpdate()"/>
+                        <UButton label="Delete" color="pink" variant="soft" @click="modalShowDelete()"/>
+                    </UButtonGroup>
+                </div>
+            </div>
 
-                            <UButton type="submit">
-                                Submit
-                            </UButton>
-                        </UForm>
-                    </div>
-                </UCard>
-            </UModal>
         </div>
-      <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
 
-          <div class="grid grid-cols-12 gap-6">
-              <div class="col-start-1 col-end-3">
-                  <UInput v-model="q" placeholder="Filter data..." />
-              </div>
-              <div class="col-end-12 col-span-2 flex">
-                  <UButton label="Create" color="primary" variant="soft" class="mx-5" @click="isOpen = true"/>
-                  <UButtonGroup size="sm" orientation="horizontal">
-                      <UButton label="View" color="white" variant="solid" />
-                      <UButton label="Update" color="cyan" variant="soft" />
-                      <UButton label="Delete" color="pink" variant="soft" />
-                  </UButtonGroup>
-              </div>
-          </div>
+        <UTable :rows="paginateRows" :columns="columns" v-model="selected" @select="select" > 
+        
 
-      </div>
+            <!-- <template #actions-data="{ row }">
+                <UDropdown :items="items(row)">
+                    <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
+                </UDropdown>
+            </template> -->
+        </UTable>
 
-      <UTable :rows="paginateRows" :columns="columns" v-model="selected"> 
-      
-
-          <template #actions-data="{ row }">
-              <UDropdown :items="items(row)">
-                  <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
-              </UDropdown>
-          </template>
-      </UTable>
-
-      <div class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700">
-        <UPagination v-model="page" :page-count="pageCount" :total="filteredRows.length" />
-      </div>
+        <div class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700">
+            <UPagination v-model="page" :page-count="pageCount" :total="filteredRows.length" />
+        </div>
     </div>
 </template>
 

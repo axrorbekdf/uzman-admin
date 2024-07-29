@@ -7,6 +7,33 @@ export const useCategoryStore = defineStore("category", {
         category: null,
         categories: [],
         model: {
+            modelForForm: {
+              entity: {
+                id: undefined,
+                name: undefined,
+                icon: undefined
+              },
+              formTemplate: [
+                {
+                  label: "Category nomi",
+                  name: 'name'
+                },
+                {
+                  label: "Category icon",
+                  name: 'icon'
+                }
+              ],
+              rules: {
+                name: {
+                  rule: "required",
+                  message: "To'ldirilishi kerak"
+                },
+                icon: {
+                  rule: "required",
+                  message: "To'ldirilishi kerak"
+                }
+              }
+            },
             columns: [
                 {
                   key: 'id',
@@ -29,21 +56,21 @@ export const useCategoryStore = defineStore("category", {
                 }
             ],
         
-            items: (row: any) => [
-                [
-                  {
-                    label: 'Edit',
-                    icon: 'i-heroicons-pencil-square-20-solid',
-                    click: () => console.log('Edit', row.id)
-                  }, {
-                    label: 'View',
-                    icon: 'i-heroicons-arrow-right-circle-20-solid'
-                  }, {
-                    label: 'Delete',
-                    icon: 'i-heroicons-trash-20-solid'
-                  }
-                ]
-              ]
+            // items: (row: any) => [
+            //     [
+            //       {
+            //         label: 'Edit',
+            //         icon: 'i-heroicons-pencil-square-20-solid',
+            //         click: () => {console.log('Edit', row.id)}
+            //       }, {
+            //         label: 'View',
+            //         icon: 'i-heroicons-arrow-right-circle-20-solid'
+            //       }, {
+            //         label: 'Delete',
+            //         icon: 'i-heroicons-trash-20-solid'
+            //       }
+            //     ]
+            //   ]
         }
 
     }),
@@ -69,6 +96,63 @@ export const useCategoryStore = defineStore("category", {
                   console.error('Failed to load posts:', error);
         
               }
+        },
+
+        async createCategory(category: any){
+          try {
+          
+              CategoryService.store(category)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async updateCategory(id:number, category: any){
+          try {
+          
+              CategoryService.update(id, category)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async deleteCategory(id:number){
+          try {
+          
+              CategoryService.delete(id)
+              .then((res: any) => {
+
+                this.getAllList();
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
         }
     },
 });

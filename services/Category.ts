@@ -16,7 +16,7 @@ import { useApiFetch } from "./FetchService";
         })
     },
 
-    view(id: number){
+    view(id: any){
         return useApiFetch()(`category/view/${id}`, {
             method: "GET"
         })
@@ -29,14 +29,14 @@ import { useApiFetch } from "./FetchService";
         })
     },
 
-    update(id: number, catgory: object){
-        return useApiFetch()("auth/logout", {
+    update(id: any, catgory: object){
+        return useApiFetch()(`category/update/${id}`, {
             method: "PUT",
             body: catgory
         })
     },
 
-    delete(id: number){
+    delete(id: any){
         return useApiFetch()(`category/delete/${id}`, {
             method: "DELETE"
         })

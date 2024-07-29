@@ -30,7 +30,7 @@ import { useApiFetch } from "./FetchService";
     },
 
     update(id: number, catgory: object){
-        return useApiFetch()("auth/logout", {
+        return useApiFetch()(`level/update/${id}`, {
             method: "PUT",
             body: catgory
         })

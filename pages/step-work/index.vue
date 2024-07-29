@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 const loadingStore = useLoadingStore();
-const modelStore = useCategoryStore();
+const modelStore = useStepWorkStore();
 
 
 onMounted(async () => {
@@ -12,13 +12,14 @@ function clearEntity(){
   modelStore.model.modelForForm.entity = {
     id: undefined,
     name: undefined,
+    text: undefined,
     icon: undefined,
   }
 }
 
-function createCategory(){
+function createStepWork(){
   loadingStore.set(true)
-  modelStore.createCategory(modelStore.model.modelForForm.entity)
+  modelStore.createStepWork(modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -28,9 +29,9 @@ function createCategory(){
   });
 }
 
-function updateCategory(){
+function updateStepWork(){
   loadingStore.set(true)
-  modelStore.updateCategory(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
+  modelStore.updateStepWork(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -40,12 +41,12 @@ function updateCategory(){
   });
 }
 
-function deleteCategory(){
+function deleteStepWork(){
 
   console.log(modelStore.model.modelForForm.entity.id ?? 0);
   
   loadingStore.set(true)
-  modelStore.deleteCategory(modelStore.model.modelForForm.entity.id ?? 0)
+  modelStore.deleteStepWork(modelStore.model.modelForForm.entity.id ?? 0)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -66,9 +67,9 @@ function deleteCategory(){
           :data="modelStore.getList" 
           :model="modelStore.model" 
           :clear-entity="clearEntity" 
-          :create-model="createCategory"
-          :update-model="updateCategory"
-          :delete-model="deleteCategory"
+          :create-model="createStepWork"
+          :update-model="updateStepWork"
+          :delete-model="deleteStepWork"
         />
       </div>
   </template>

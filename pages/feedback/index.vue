@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useFeedbackStore } from '~/store/feedback.store';
+
 
 const loadingStore = useLoadingStore();
-const modelStore = useCategoryStore();
+const modelStore = useFeedbackStore();
 
 
 onMounted(async () => {
@@ -11,14 +13,16 @@ onMounted(async () => {
 function clearEntity(){
   modelStore.model.modelForForm.entity = {
     id: undefined,
-    name: undefined,
+    text: undefined,
     icon: undefined,
+    user_from_id: undefined,
+    user_to_id: undefined,
   }
 }
 
-function createCategory(){
+function createFeedback(){
   loadingStore.set(true)
-  modelStore.createCategory(modelStore.model.modelForForm.entity)
+  modelStore.createFeedback(modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -28,9 +32,9 @@ function createCategory(){
   });
 }
 
-function updateCategory(){
+function updateFeedback(){
   loadingStore.set(true)
-  modelStore.updateCategory(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
+  modelStore.updateFeedback(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -40,12 +44,12 @@ function updateCategory(){
   });
 }
 
-function deleteCategory(){
+function deleteFeedback(){
 
   console.log(modelStore.model.modelForForm.entity.id ?? 0);
   
   loadingStore.set(true)
-  modelStore.deleteCategory(modelStore.model.modelForForm.entity.id ?? 0)
+  modelStore.deleteFeedback(modelStore.model.modelForForm.entity.id ?? 0)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -66,9 +70,9 @@ function deleteCategory(){
           :data="modelStore.getList" 
           :model="modelStore.model" 
           :clear-entity="clearEntity" 
-          :create-model="createCategory"
-          :update-model="updateCategory"
-          :delete-model="deleteCategory"
+          :create-model="createFeedback"
+          :update-model="updateFeedback"
+          :delete-model="deleteFeedback"
         />
       </div>
   </template>

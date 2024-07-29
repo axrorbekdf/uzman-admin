@@ -14,24 +14,69 @@ export const sidebarItems = [
         icon: "radix-icons:dashboard"
     },
     {
-        name: "To do",
-        path: "/documents/to-do",
+        name: "Category",
+        path: "/category",
         icon: "ri:todo-fill"
     },
     {
-        name: "In progress",
-        path: "/documents/in-progress",
+        name: "Level",
+        path: "/level",
         icon: "game-icons:progression"
     },
     {
-        name: "Produced",
-        path: "/documents/produced",
+        name: "Home card",
+        path: "/home-card",
         icon: "eos-icons:product-subscriptions"
         
     },
     {
-        name: "Done",
-        path: "/documents/done",
+        name: "Specialist",
+        path: "/specialist",
         icon: "ic:baseline-cloud-done"
     },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Step work",
+        path: "/step-work",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Region",
+        path: "/region",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Feedback",
+        path: "/feedback",
+        icon: "ic:baseline-cloud-done"
+    }
 ];

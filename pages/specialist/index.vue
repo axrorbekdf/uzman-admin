@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useSpecialistStore } from '~/store/specialist.store';
+
 
 const loadingStore = useLoadingStore();
-const modelStore = useCategoryStore();
+const modelStore = useSpecialistStore();
 
 
 onMounted(async () => {
@@ -12,13 +14,13 @@ function clearEntity(){
   modelStore.model.modelForForm.entity = {
     id: undefined,
     name: undefined,
-    icon: undefined,
+    category_id: undefined,
   }
 }
 
-function createCategory(){
+function createSpecialist(){
   loadingStore.set(true)
-  modelStore.createCategory(modelStore.model.modelForForm.entity)
+  modelStore.createSpecialist(modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -28,9 +30,9 @@ function createCategory(){
   });
 }
 
-function updateCategory(){
+function updateSpecialist(){
   loadingStore.set(true)
-  modelStore.updateCategory(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
+  modelStore.updateSpecialist(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -40,12 +42,12 @@ function updateCategory(){
   });
 }
 
-function deleteCategory(){
+function deleteSpecialist(){
 
   console.log(modelStore.model.modelForForm.entity.id ?? 0);
   
   loadingStore.set(true)
-  modelStore.deleteCategory(modelStore.model.modelForForm.entity.id ?? 0)
+  modelStore.deleteSpecialist(modelStore.model.modelForForm.entity.id ?? 0)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -66,9 +68,9 @@ function deleteCategory(){
           :data="modelStore.getList" 
           :model="modelStore.model" 
           :clear-entity="clearEntity" 
-          :create-model="createCategory"
-          :update-model="updateCategory"
-          :delete-model="deleteCategory"
+          :create-model="createSpecialist"
+          :update-model="updateSpecialist"
+          :delete-model="deleteSpecialist"
         />
       </div>
   </template>

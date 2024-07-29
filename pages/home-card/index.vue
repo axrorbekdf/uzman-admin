@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useHomeCardStore } from '~/store/homeCard.store';
+
 
 const loadingStore = useLoadingStore();
-const modelStore = useCategoryStore();
+const modelStore = useHomeCardStore();
 
 
 onMounted(async () => {
@@ -12,13 +14,13 @@ function clearEntity(){
   modelStore.model.modelForForm.entity = {
     id: undefined,
     name: undefined,
-    icon: undefined,
+    image: undefined,
   }
 }
 
-function createCategory(){
+function createHomeCard(){
   loadingStore.set(true)
-  modelStore.createCategory(modelStore.model.modelForForm.entity)
+  modelStore.createHomeCard(modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -28,9 +30,9 @@ function createCategory(){
   });
 }
 
-function updateCategory(){
+function updateHomeCard(){
   loadingStore.set(true)
-  modelStore.updateCategory(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
+  modelStore.updateHomeCard(modelStore.model.modelForForm.entity.id ?? 0, modelStore.model.modelForForm.entity)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -40,12 +42,12 @@ function updateCategory(){
   });
 }
 
-function deleteCategory(){
+function deleteHomeCard(){
 
   console.log(modelStore.model.modelForForm.entity.id ?? 0);
   
   loadingStore.set(true)
-  modelStore.deleteCategory(modelStore.model.modelForForm.entity.id ?? 0)
+  modelStore.deleteHomeCard(modelStore.model.modelForForm.entity.id ?? 0)
   .then((res: any) => {
     loadingStore.set(false)
   }).catch(() => {
@@ -66,9 +68,9 @@ function deleteCategory(){
           :data="modelStore.getList" 
           :model="modelStore.model" 
           :clear-entity="clearEntity" 
-          :create-model="createCategory"
-          :update-model="updateCategory"
-          :delete-model="deleteCategory"
+          :create-model="createHomeCard"
+          :update-model="updateHomeCard"
+          :delete-model="deleteHomeCard"
         />
       </div>
   </template>

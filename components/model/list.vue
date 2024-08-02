@@ -75,6 +75,14 @@ const paginateRows = computed(() => {
   return filteredRows.value.slice((page.value - 1) * pageCount, (page.value) * pageCount)
 })
 
+const statusButton = computed(() => {
+  if(selected.value.length > 0){
+    return true
+  }
+
+  return false
+})
+
 const isOpenView = ref(false);
 const isOpenCreate = ref(false);
 const isOpenUpdate = ref(false);
@@ -115,9 +123,14 @@ function modalShowDelete(){
                 <div class="col-end-12 col-span-2 flex">
                     <UButton label="Create" color="primary" variant="soft" class="mx-5" @click="modalShowCreate()"/>
                     <UButtonGroup size="sm" orientation="horizontal">
-                        <UButton label="View" color="white" variant="solid" @click="modalShowView()"/>
-                        <UButton label="Update" color="cyan" variant="soft" @click="modalShowUpdate()"/>
-                        <UButton label="Delete" color="pink" variant="soft" @click="modalShowDelete()"/>
+                        <UButton v-if="selected.length > 0" label="View" color="white" variant="solid" @click="modalShowView()" />
+                        <UButton v-else disabled label="View" color="white" variant="solid" @click="modalShowView()"/>
+
+                        <UButton v-if="selected.length > 0" label="Update" color="cyan" variant="soft" @click="modalShowUpdate()"/>
+                        <UButton v-else disabled label="Update" color="cyan" variant="soft" @click="modalShowUpdate()"/>
+
+                        <UButton v-if="selected.length > 0" label="Delete" color="pink" variant="soft" @click="modalShowDelete()"/>
+                        <UButton v-else disabled label="Delete" color="pink" variant="soft" @click="modalShowDelete()"/>
                     </UButtonGroup>
                 </div>
             </div>

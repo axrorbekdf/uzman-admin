@@ -16,6 +16,24 @@ export const useStepWorkStore = defineStore("stepWork", {
                 text: undefined,
                 icon: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                text:{
+                  name: 'Text',
+                  type: 'relation'
+                },
+                icon: {
+                  name: 'Icon',
+                  type: 'file'
+                }
+              },
               formTemplate: [
                 {
                   label: "Nomi",

@@ -23,6 +23,63 @@ export const useMasterStore = defineStore("master", {
                 specialist_id: undefined,
                 user_id: undefined,
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                phone: {
+                  name: 'Telefon',
+                  type: 'string'
+                },
+                price: {
+                  name: 'Narx',
+                  type: 'string'
+                },
+                time: {
+                  name: 'Vaqt',
+                  type: 'string'
+                },
+                verify: {
+                  name: 'Tasdiqlash',
+                  type: 'string'
+                },
+                experience: {
+                  name: 'Ish tajribasi',
+                  type: 'string'
+                },
+                image: {
+                  name: 'Rasm',
+                  type: 'file'
+                },
+                pasport_image: {
+                  name: 'Pasport rasm',
+                  type: 'file'
+                },
+                about: {
+                  name: 'Haqida',
+                  type: 'string'
+                },
+                level_id: {
+                  name: 'Darajasi',
+                  type: 'object',
+                  relation: 'name'
+                },
+                specialist_id: {
+                  name: 'Mutaxasisligi',
+                  type: 'object',
+                  relation: 'name'
+                },
+                user_id: {
+                  name: 'Foydalanuchi',
+                  type: 'object',
+                  relation: 'name'
+                },
+              },
               formTemplate: [
                 {
                     label: "Nomi",
@@ -166,16 +223,16 @@ export const useMasterStore = defineStore("master", {
                   label: 'Haqida',
                   sortable: true
                 },{
-                  key: 'level_id',
+                  key: 'level.name',
                   label: 'Daraja',
                   sortable: true
                 },{
-                  key: 'specialist_id',
+                  key: 'specialist.name',
                   label: 'Mutaxasisligi',
                   sortable: true
                 },{
                   key: 'Login',
-                  label: 'user_id',
+                  label: 'user.name',
                   sortable: true
                 }, {
                   key: 'date',

@@ -13,14 +13,30 @@ export const useCategoryStore = defineStore("category", {
                 name: undefined,
                 icon: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                icon: {
+                  name: 'Icon',
+                  type: 'file'
+                }
+              },
               formTemplate: [
                 {
                   label: "Category nomi",
-                  name: 'name'
+                  name: 'name',
+                  type: String
                 },
                 {
                   label: "Category icon",
-                  name: 'icon'
+                  name: 'icon',
+                  type: File
                 }
               ],
               rules: {

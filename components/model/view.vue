@@ -30,11 +30,19 @@ const props = defineProps({
           </div>
         </template>
 
-        
-        <p>{{ model.modelForForm.entity.name }}</p>
-        <UCarousel v-slot="{ item }" :items="[model.modelForForm.entity.name]" :ui="{ item: 'basis-full' }" class="rounded-lg overflow-hidden">
-            <img :src="item" class="w-full" draggable="false">
-        </UCarousel>
+        <div v-for="(property, key) in model.modelForForm.viewEntity" :key="property">
+            <p v-if="property.type == 'number'">{{property.name}} : {{ model.modelForForm.entity[key] }}</p>
+            <p v-if="property.type == 'string'">{{property.name}} : {{ model.modelForForm.entity[key] }}</p>
+            <p v-if="property.type == 'object'">{{property.name}} : {{ model.modelForForm.entity[key][property.relation] }}</p>
+
+            <div v-if="property.type == 'file'">
+              <p>{{property.name}}</p>
+              <UCarousel v-slot="{ item }" :items="[model.modelForForm.entity[key]]" :ui="{ item: 'basis-full' }" class="rounded-lg overflow-hidden">
+                <img :src="item" class="w-full" draggable="false">
+              </UCarousel>
+            </div>
+        </div>
+
       </UCard>
     </UModal>
   </div>

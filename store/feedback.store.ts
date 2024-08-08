@@ -11,18 +11,33 @@ export const useFeedbackStore = defineStore("feedback", {
               entity: {
                 id: undefined,
                 text: undefined,
-                icon: undefined,
                 user_from_id: undefined,
                 user_to_id: undefined,
+              },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                text: {
+                  name: 'Text',
+                  type: 'string'
+                },
+                user_from: {
+                  name: 'Userdan',
+                  type: 'object',
+                  relation: 'name'
+                },
+                user_to: {
+                  name: 'Userga',
+                  type: 'object',
+                  relation: 'name'
+                }
               },
               formTemplate: [
                 {
                     label: "Text",
                     name: 'text'
-                },
-                {
-                    label: "Icon",
-                    name: 'icon'
                 },
                 {
                     label: "Userdan",
@@ -35,10 +50,6 @@ export const useFeedbackStore = defineStore("feedback", {
               ],
               rules: {
                 text: {
-                  rule: "required",
-                  message: "To'ldirilishi kerak"
-                },
-                icon: {
                   rule: "required",
                   message: "To'ldirilishi kerak"
                 },
@@ -61,16 +72,12 @@ export const useFeedbackStore = defineStore("feedback", {
                     key: 'text',
                     label: 'Text',
                     sortable: true
-                }, {
-                    key: 'icon',
-                    label: 'Icon',
-                    sortable: true
-                }, {
-                    key: 'user_from_id',
+                },{
+                    key: 'user_from.name',
                     label: 'Userdan',
                     sortable: true
                 }, {
-                    key: 'user_to_id',
+                    key: 'user_to.name',
                     label: 'Userga',
                     sortable: true
                 }, {

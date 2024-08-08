@@ -13,6 +13,21 @@ export const useSpecialistStore = defineStore("specialist", {
                 name: undefined,
                 category_id: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                category: {
+                  name: 'Category',
+                  type: 'object',
+                  relation: 'name'
+                }
+              },
               formTemplate: [
                 {
                   label: "Category nomi",
@@ -44,7 +59,7 @@ export const useSpecialistStore = defineStore("specialist", {
                   label: 'Name',
                   sortable: true
                 }, {
-                  key: 'category_id',
+                  key: 'category.name',
                   label: 'Category',
                   sortable: true
                 }, {

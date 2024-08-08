@@ -13,6 +13,20 @@ export const useHomeCardStore = defineStore("homeCard", {
                 name: undefined,
                 image: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                image: {
+                  name: 'Image',
+                  type: 'file'
+                }
+              },
               formTemplate: [
                 {
                   label: "Home card nomi",

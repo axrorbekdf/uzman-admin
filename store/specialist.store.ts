@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import CategoryService from "~/services/Category";
 import SpecialistService from "~/services/Specialist";
 
 
@@ -12,6 +13,9 @@ export const useSpecialistStore = defineStore("specialist", {
                 id: undefined,
                 name: undefined,
                 category_id: undefined
+              },
+              relations:{
+                categories: []
               },
               viewEntity: {
                 id: {
@@ -31,11 +35,17 @@ export const useSpecialistStore = defineStore("specialist", {
               formTemplate: [
                 {
                   label: "Category nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 },
                 {
                   label: "Category",
-                  name: 'category_id'
+                  name: 'category_id',
+                  relation: {
+                    name: 'categories',
+                    value: 'id',
+                    options: 'name'
+                  }
                 }
               ],
               rules: {
@@ -112,6 +122,25 @@ export const useSpecialistStore = defineStore("specialist", {
         
               }
         },
+
+        async getAllCategories(){
+          try {
+          
+              CategoryService.forOptions()
+              .then((res: any) => {
+                  
+                  this.model.modelForForm.relations.categories = (res.resoult.data)
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+      },
 
         async createSpecialist(specialist: any){
           try {

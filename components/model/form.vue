@@ -34,17 +34,17 @@ const props = defineProps({
   }
 
   async function onSubmit (event: FormSubmitEvent<any>) {
-    // Do something with data)
-    // console.log(event.data)
-    props.entityHandler()
 
-    console.log(loadingStore.isLoading);
-    
+    props.entityHandler()    
 
     if(!loadingStore.isLoading){
       props.toggleShow();
     }
   }
+
+  const people = ['Wade Cooper', 'Arlene Mccoy', 'Devon Webb', 'Tom Cook', 'Tanya Fox', 'Hellen Schmidt', 'Caroline Schultz', 'Mason Heaney', 'Claudie Smitham', 'Emil Schaefer']
+
+  const selected = ref(people[0])
 </script>
 
 <template>
@@ -52,7 +52,17 @@ const props = defineProps({
   <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
 
     <UFormGroup v-for="item in props.modelForForm.formTemplate" :key="item" :label="item.label" :name="item.name">
-      <UInput v-model="state[`${item.name}`]" />
+      <UInput v-if="item.relation == null" v-model="state[`${item.name}`]"/>
+
+      <USelectMenu 
+          v-if="item.relation != null" 
+          searchable 
+          searchable-placeholder="Qidiring... " 
+          v-model="state[`${item.name}`]" 
+          :options="props.modelForForm.relations[`${item.relation.name}`]" 
+          :value-attribute="item.relation.value"
+          :option-attribute="item.relation.options"
+      />
     </UFormGroup>
 
     <UButton type="submit" :disabled="loadingStore.isLoading">

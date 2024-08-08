@@ -8,6 +8,7 @@ const modelStore = useSpecialistStore();
 
 onMounted(async () => {
   modelStore.getAllList();
+  modelStore.getAllCategories();
 });
 
 function clearEntity(){
@@ -43,8 +44,6 @@ function updateSpecialist(){
 }
 
 function deleteSpecialist(){
-
-  console.log(modelStore.model.modelForForm.entity.id ?? 0);
   
   loadingStore.set(true)
   modelStore.deleteSpecialist(modelStore.model.modelForForm.entity.id ?? 0)

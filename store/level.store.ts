@@ -11,6 +11,16 @@ export const useLevelStore = defineStore("level", {
                 id: undefined,
                 name: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+              },
               formTemplate: [
                 {
                   label: "Level nomi",

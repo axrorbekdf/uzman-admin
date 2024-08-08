@@ -14,11 +14,8 @@ function clearEntity(){
   modelStore.model.modelForForm.entity = {
     id: undefined,
     text: undefined,
-    icon: undefined,
     user_from_id: undefined,
-    user_from: undefined,
     user_to_id: undefined,
-    user_to: undefined,
   }
 }
 

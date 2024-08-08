@@ -14,6 +14,26 @@ export const useCommentStore = defineStore("comment", {
                 user_from_id: undefined,
                 user_to_id: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                text: {
+                  name: 'Text',
+                  type: 'string'
+                },
+                user_from: {
+                  name: 'Userdan',
+                  type: 'object',
+                  relation: 'name'
+                },
+                user_to: {
+                  name: 'Userga',
+                  type: 'object',
+                  relation: 'name'
+                }
+              },
               formTemplate: [
                 {
                     label: "Text",

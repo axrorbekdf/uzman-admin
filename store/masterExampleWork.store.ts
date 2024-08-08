@@ -17,6 +17,21 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
                 images: undefined,
                 master_id: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                images: {
+                  name: 'Rasmlar',
+                  type: 'file'
+                },
+                master: {
+                  name: 'Master',
+                  type: 'object',
+                  relation: 'name'
+                }
+              },
               formTemplate: [
                 {
                   label: "Rasmlar",

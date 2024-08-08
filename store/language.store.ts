@@ -13,6 +13,20 @@ export const useLanguageStore = defineStore("language", {
                 name: undefined,
                 slug: undefined
               },
+              viewEntity: {
+                id: {
+                  name: 'ID',
+                  type: 'number'
+                },
+                name: {
+                  name: 'Nomi',
+                  type: 'string'
+                },
+                slug: {
+                  name: 'slug',
+                  type: 'string'
+                }
+              },
               formTemplate: [
                 {
                   label: "Nomi",

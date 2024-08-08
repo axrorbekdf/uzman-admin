@@ -33,6 +33,7 @@ const props = defineProps({
         <div v-for="(property, key) in model.modelForForm.viewEntity" :key="property">
             <p v-if="property.type == 'number'">{{property.name}} : {{ model.modelForForm.entity[key] }}</p>
             <p v-if="property.type == 'string'">{{property.name}} : {{ model.modelForForm.entity[key] }}</p>
+            <p v-if="property.type == 'object'">{{property.name}} : {{ model.modelForForm.entity[key][property.relation] }}</p>
 
             <div v-if="property.type == 'file'">
               <p>{{property.name}}</p>

@@ -166,16 +166,16 @@ export const useMasterStore = defineStore("master", {
                   label: 'Haqida',
                   sortable: true
                 },{
-                  key: 'level_id',
+                  key: 'level.name',
                   label: 'Daraja',
                   sortable: true
                 },{
-                  key: 'specialist_id',
+                  key: 'specialist.name',
                   label: 'Mutaxasisligi',
                   sortable: true
                 },{
                   key: 'Login',
-                  label: 'user_id',
+                  label: 'user.name',
                   sortable: true
                 }, {
                   key: 'date',

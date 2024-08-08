@@ -4,7 +4,7 @@ import LevelService from "~/services/Level";
 export const useLevelStore = defineStore("level", {
     state: () => ({
         level: null,
-        categories: [],
+        levels: [],
         model: {
             modelForForm: {
               entity: {
@@ -62,7 +62,7 @@ export const useLevelStore = defineStore("level", {
     }),
     getters: {
         level: state => state.level,
-        getList: state => state.categories
+        getList: state => state.levels
     },
     actions: {
         async getAllList(){
@@ -71,7 +71,7 @@ export const useLevelStore = defineStore("level", {
                 LevelService.forOptions()
                 .then((res: any) => {
                     
-                    this.categories = (res.resoult.data)
+                    this.levels = (res.resoult.data)
                   
                 }).catch((error) => {
                   console.error('Failed to load posts:', error);

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import MasterService from "~/services/Master";
 import MasterExampleWorkService from "~/services/MasterExampleWork";
 // MasterExampleWork
 // masterExampleWork
@@ -8,6 +9,7 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
     state: () => ({
         masterExampleWork: null,
         masterExampleWorks: [],
+        masters: [],
         model: {
             modelForForm: {
               entity: {
@@ -22,7 +24,9 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
                 },
                 {
                   label: "Master",
-                  name: 'master_id'
+                  name: 'master_id',
+                  type: 'model',
+                  model: []
                 }
               ],
               rules: {
@@ -46,7 +50,7 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
                   label: 'Rasmlar',
                   sortable: true
                 }, {
-                  key: 'master_id',
+                  key: 'master.name',
                   label: 'Master',
                   sortable: true
                 }, {

@@ -44,7 +44,7 @@ export const useSpecialistStore = defineStore("specialist", {
                   label: 'Name',
                   sortable: true
                 }, {
-                  key: 'category_id',
+                  key: 'category.name',
                   label: 'Category',
                   sortable: true
                 }, {

@@ -31,12 +31,12 @@ export const useCategoryStore = defineStore("category", {
                 {
                   label: "Category nomi",
                   name: 'name',
-                  type: String
+                  relation: null
                 },
                 {
                   label: "Category icon",
                   name: 'icon',
-                  type: File
+                  relation: null
                 }
               ],
               rules: {

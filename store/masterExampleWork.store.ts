@@ -17,6 +17,9 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
                 images: undefined,
                 master_id: undefined
               },
+              relations:{
+                masters: []
+              },
               viewEntity: {
                 id: {
                   name: 'ID',
@@ -35,13 +38,17 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
               formTemplate: [
                 {
                   label: "Rasmlar",
-                  name: 'images'
+                  name: 'images',
+                  relation: null
                 },
                 {
                   label: "Master",
                   name: 'master_id',
-                  type: 'model',
-                  model: []
+                  relation: {
+                    name: 'masters',
+                    value: 'id',
+                    options: 'name'
+                  }
                 }
               ],
               rules: {
@@ -118,6 +125,25 @@ export const useMasterExampleWorkStore = defineStore("masterExampleWork", {
         
               }
         },
+
+        async getAllMasters(){
+          try {
+          
+              MasterService.forOptions()
+              .then((res: any) => {
+                  
+                this.model.modelForForm.relations.masters = (res.resoult.data)
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+      },
 
         async createMasterExampleWork(masterExampleWork: any){
           try {

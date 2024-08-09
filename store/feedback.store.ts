@@ -38,6 +38,7 @@ export const useFeedbackStore = defineStore("feedback", {
                 {
                     label: "Text",
                     name: 'text'
+                    
                 },
                 {
                     label: "Userdan",

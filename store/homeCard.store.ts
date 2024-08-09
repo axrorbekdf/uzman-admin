@@ -30,11 +30,13 @@ export const useHomeCardStore = defineStore("homeCard", {
               formTemplate: [
                 {
                   label: "Home card nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 },
                 {
                   label: "Home card image",
-                  name: 'image'
+                  name: 'image',
+                  relation: null
                 }
               ],
               rules: {

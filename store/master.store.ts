@@ -23,6 +23,11 @@ export const useMasterStore = defineStore("master", {
                 specialist_id: undefined,
                 user_id: undefined,
               },
+              relations:{
+                levels: [],
+                specialists: [],
+                users: []
+              },
               viewEntity: {
                 id: {
                   name: 'ID',
@@ -83,51 +88,75 @@ export const useMasterStore = defineStore("master", {
               formTemplate: [
                 {
                     label: "Nomi",
-                    name: 'name'
+                    name: 'name',
+                    relation: null
                 },
                 {
                     label: "Telefon",
-                    name: 'phone'
+                    name: 'phone',
+                    relation: null
                 },
                 {
                     label: "Narxi",
-                    name: 'price'
+                    name: 'price',
+                    relation: null
                 },
                 {
                     label: "Vaqt",
-                    name: 'time'
+                    name: 'time',
+                    relation: null
                 },
                 {
                     label: "Status",
-                    name: 'verify'
+                    name: 'verify',
+                    relation: null
                 },
                 {
                     label: "Ish staji",
-                    name: 'experience'
+                    name: 'experience',
+                    relation: null
                 },
                 {
                     label: "Rasm",
-                    name: 'image'
+                    name: 'image',
+                    relation: null
                 },
                 {
                     label: "Pasport image",
-                    name: 'pasport_image'
+                    name: 'pasport_image',
+                    relation: null
                 },
                 {
                     label: "Haqida",
-                    name: 'about'
+                    name: 'about',
+                    relation: null
                 },
                 {
                     label: "Level",
-                    name: 'level_id'
+                    name: 'level_id',
+                    relation: {
+                      name: 'levels',
+                      value: 'id',
+                      options: 'name'
+                    }
                 },
                 {
                     label: "Musaxasisligi",
-                    name: 'specialist_id'
+                    name: 'specialist_id',
+                    relation: {
+                      name: 'specialists',
+                      value: 'id',
+                      options: 'name'
+                    }
                 },
                 {
                     label: "Login",
-                    name: 'user_id'
+                    name: 'user_id',
+                    relation: {
+                      name: 'users',
+                      value: 'id',
+                      options: 'name'
+                    }
                 },
               ],
               rules: {
@@ -273,6 +302,44 @@ export const useMasterStore = defineStore("master", {
                 .then((res: any) => {
                     
                     this.masters = (res.resoult.data)
+            
+                }).catch((error) => {
+                    
+                  console.error('Failed to load posts:', error);
+                });
+            
+              } catch (error) {
+                  console.error('Failed to load posts:', error);
+        
+              }
+        },
+
+        async getAllLevels(){
+            try {
+            
+                MasterService.forOptions()
+                .then((res: any) => {
+                    
+                  this.model.modelForForm.relations.levels = (res.resoult.data)
+            
+                }).catch((error) => {
+                    
+                  console.error('Failed to load posts:', error);
+                });
+            
+              } catch (error) {
+                  console.error('Failed to load posts:', error);
+        
+              }
+        },
+
+        async getAllSpecialists(){
+            try {
+            
+                MasterService.forOptions()
+                .then((res: any) => {
+                    
+                  this.model.modelForForm.relations.specialists = (res.resoult.data)
             
                 }).catch((error) => {
                     

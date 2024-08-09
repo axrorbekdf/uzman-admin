@@ -27,7 +27,8 @@ export const useRegionStore = defineStore("region", {
               formTemplate: [
                 {
                   label: "Nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 }
               ],
               rules: {

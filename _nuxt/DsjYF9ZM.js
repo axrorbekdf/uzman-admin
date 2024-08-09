@@ -1,1 +1,0 @@
-import{L as o}from"./D-e5Xl1W.js";import{a,g as r,r as n}from"./ADEZgYjw.js";const e={user:{id:"",username:"",email:"",password:"",token:""}},c=o("auth",{state:()=>e,getters:{currentUser:t=>t.user},actions:{set(t){a("token",t.token),this.$patch({user:t})},update(t){const s=r("token");t.token=s,this.$patch({user:t})},clear(){n("token"),this.$patch(e)}}});export{c as u};

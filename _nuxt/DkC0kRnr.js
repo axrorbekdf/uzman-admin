@@ -1,1 +1,0 @@
-import{ap as r,aq as e}from"./D-e5Xl1W.js";import{A as a}from"./CdEsSo2Z.js";import"./ADEZgYjw.js";const c=r(async(o,n)=>{a.getUser().then(t=>{if(!t.status)return console.log("AUTH run"),e("/auth/login")}).catch(t=>e("/auth/login"))});export{c as default};

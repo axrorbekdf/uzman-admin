@@ -26,7 +26,7 @@ export const useMasterStore = defineStore("master", {
               relations:{
                 levels: [],
                 specialists: [],
-                users: []
+                // users: []
               },
               viewEntity: {
                 id: {
@@ -152,11 +152,7 @@ export const useMasterStore = defineStore("master", {
                 {
                     label: "Login",
                     name: 'user_id',
-                    relation: {
-                      name: 'users',
-                      value: 'id',
-                      options: 'name'
-                    }
+                    relation: null
                 },
               ],
               rules: {

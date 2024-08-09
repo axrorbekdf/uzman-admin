@@ -30,11 +30,13 @@ export const useLanguageStore = defineStore("language", {
               formTemplate: [
                 {
                   label: "Nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 },
                 {
                   label: "Slug",
-                  name: 'slug'
+                  name: 'slug',
+                  relation: null
                 }
               ],
               rules: {

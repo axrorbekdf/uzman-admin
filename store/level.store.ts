@@ -24,7 +24,8 @@ export const useLevelStore = defineStore("level", {
               formTemplate: [
                 {
                   label: "Level nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 }
               ],
               rules: {

@@ -37,15 +37,18 @@ export const useCommentStore = defineStore("comment", {
               formTemplate: [
                 {
                     label: "Text",
-                    name: 'text'
+                    name: 'text',
+                    relation: null
                 },
                 {
                     label: "Userdan",
-                    name: 'user_from_id'
+                    name: 'user_from_id',
+                    relation: null
                 },
                 {
                     label: "Userga",
-                    name: 'user_to_id'
+                    name: 'user_to_id',
+                    relation: null
                 }
               ],
               rules: {

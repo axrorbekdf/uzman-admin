@@ -37,15 +37,18 @@ export const useStepWorkStore = defineStore("stepWork", {
               formTemplate: [
                 {
                   label: "Nomi",
-                  name: 'name'
+                  name: 'name',
+                  relation: null
                 },
                 {
                   label: "Text",
-                  name: 'text'
+                  name: 'text',
+                  relation: null
                 },
                 {
                   label: "Icon",
-                  name: 'icon'
+                  name: 'icon',
+                  relation: null
                 }
               ],
               rules: {

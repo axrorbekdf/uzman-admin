@@ -6,6 +6,7 @@ const modelStore = useMasterExampleWorkStore();
 
 onMounted(async () => {
   modelStore.getAllList();
+  modelStore.getAllMasters();
 });
 
 function clearEntity(){

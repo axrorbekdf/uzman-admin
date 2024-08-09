@@ -6,6 +6,8 @@ const modelStore = useMasterStore();
 
 onMounted(async () => {
   modelStore.getAllList();
+  modelStore.getAllLevels();
+  modelStore.getAllSpecialists();
 });
 
 function clearEntity(){
